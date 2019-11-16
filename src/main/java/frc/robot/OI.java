@@ -24,6 +24,8 @@ public class OI {
   //above
   Button a_above = new JoystickButton(aboveChassis, RobotMap.XBOX.BUTTON_A);
   Button b_above = new JoystickButton(aboveChassis, RobotMap.XBOX.BUTTON_B);
+  Button x_above = new JoystickButton(aboveChassis, RobotMap.XBOX.BUTTON_X);
+  Button y_above = new JoystickButton(aboveChassis, RobotMap.XBOX.BUTTON_Y);
 
   public OI(){
     //chassis
