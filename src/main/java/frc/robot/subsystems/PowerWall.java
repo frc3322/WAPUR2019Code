@@ -23,17 +23,19 @@ public class PowerWall extends Subsystem{
     WPI_TalonSRX backMotor = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_BACK_MOTOR);
     DoubleSolenoid intakeExtender = new DoubleSolenoid(RobotMap.PCM.PCM_ID, RobotMap.PCM.INTAKE_EXTEND, RobotMap.PCM.INTAKE_RETRACT);
 
+    double defaultSpeed = 1;
+
     public PowerWall() {
     }
 
     public void inputValues(){
-        SmartDashboard.putNumber("PowerWall Front Speed", 0.45);
-        SmartDashboard.putNumber("PowerWall Back Speed", 0.45);
+        SmartDashboard.putNumber("PowerWall Front Speed", defaultSpeed);
+        SmartDashboard.putNumber("PowerWall Back Speed", defaultSpeed);
     }
 
     public void start() {
-        frontMotor.set(SmartDashboard.getNumber("PowerWall Front Speed", 0.45));
-        backMotor.set(SmartDashboard.getNumber("PowerWall Back Speed", 0.45));
+        frontMotor.set(SmartDashboard.getNumber("PowerWall Front Speed", defaultSpeed));
+        backMotor.set(SmartDashboard.getNumber("PowerWall Back Speed", defaultSpeed));
     }
 
     public void stop() {
