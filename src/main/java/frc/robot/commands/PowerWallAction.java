@@ -15,12 +15,19 @@ import edu.wpi.first.wpilibj.command.Command;
 import static frc.robot.Robot.powerwall;
 
 public class PowerWallAction extends Command{
+    
+    public enum action {
+        INTAKE,
+        SHOOT,
+        EJECT,
+        STOP;
+    }
 
-    public String action;
+    action status;
 
-    public PowerWallAction(String action) {
+    public PowerWallAction(action status) {
         requires(powerwall);
-        this.action = action;
+        this.status = status;
 
         /*actions:
             -intake ball
@@ -30,16 +37,22 @@ public class PowerWallAction extends Command{
         */
     }
 
+
     @Override
     protected void initialize() {
-        if(action == "intake ball"){
-            powerwall.toggleIntake();
-        } else if (action == "shoot ball"){
-            powerwall.start();
-        } else if (action == "eject ball"){
-            powerwall.reverse();
-        } else if (action == "stop intake"){
-            powerwall.stop();
+        switch(status) {
+            case INTAKE:
+                powerwall.toggleIntake();
+                break;
+            case SHOOT:
+                powerwall.start();
+                break;
+            case EJECT:
+                powerwall.reverse();
+                break;
+            case STOP:
+                powerwall.stop();
+                break;
         }
     }
 

@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.*;
+import frc.robot.commands.PowerWallAction.action;
 
 public class OI {
   public Joystick chassis = new Joystick(0);
@@ -31,10 +32,10 @@ public class OI {
     //chassis
 
     //above
-    a_above.whenPressed(new PowerWallAction("start intake"));
-    a_above.whenReleased(new PowerWallAction("stop intake"));
+    a_above.whenPressed(new PowerWallAction(action.SHOOT));
+    a_above.whenReleased(new PowerWallAction(action.STOP));
 
-    b_above.whenPressed(new PowerWallAction("reverse intake"));
-    b_above.whenReleased(new PowerWallAction("stop intake"));
+    b_above.whenPressed(new PowerWallAction(action.EJECT));
+    b_above.whenReleased(new PowerWallAction(action.STOP));
   }
 }
