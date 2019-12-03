@@ -78,9 +78,14 @@ public class DriveControl extends Command {
         driveLeft = newY - newX;
         driveRight = newY + newX;
 
-        SmartDashboard.putNumber("Controller X" , x);
-        SmartDashboard.putNumber("Controller Y", y);
+        if (Math.abs(x) < 0.05) {
+            double avgDrive = (driveLeft+driveRight)/2;
+            drivetrain.tankDrive(avgDrive, avgDrive);
 
+        } else {
+            drivetrain.tankDrive(driveLeft, driveRight);
+
+        }
     }
         
 
