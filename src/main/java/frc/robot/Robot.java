@@ -24,9 +24,11 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.PowerWallAction;
 import frc.robot.subsystems.PowerWall;
+import frc.robot.subsystems.Drivetrain;
 
 public class Robot extends TimedRobot {
   public static PowerWall powerwall = new PowerWall();
+  public static Drivetrain drivetrain = new Drivetrain();
   public static OI oi;
 
   @Override

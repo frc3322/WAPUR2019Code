@@ -23,7 +23,7 @@ public class PowerWall extends Subsystem{
     WPI_TalonSRX frontMotor2 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_FRONT_MOTOR_2);
     WPI_TalonSRX backMotor1 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_BACK_MOTOR_1);
     WPI_TalonSRX backMotor2 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_BACK_MOTOR_2);
-
+    
     
     DoubleSolenoid intakeExtender = new DoubleSolenoid(RobotMap.PCM.PCM_ID, RobotMap.PCM.INTAKE_EXTEND, RobotMap.PCM.INTAKE_RETRACT);
 
@@ -32,6 +32,11 @@ public class PowerWall extends Subsystem{
     public PowerWall() {
         frontMotor2.follow(frontMotor1);
         backMotor2.follow(backMotor1);
+
+        frontMotor1.configPeakCurrentLimit(60, 10);
+        frontMotor2.configPeakCurrentLimit(60, 10);
+        backMotor1.configPeakCurrentLimit(60, 10);
+        backMotor2.configPeakCurrentLimit(60, 10);
     }
 
     public void inputValues(){

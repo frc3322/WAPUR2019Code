@@ -17,8 +17,8 @@ import frc.robot.commands.*;
 import frc.robot.commands.PowerWallAction.action;
 
 public class OI {
-  public Joystick chassis = new Joystick(0);
-  public Joystick aboveChassis = new Joystick(1);
+  private Joystick chassis = new Joystick(0);
+  private Joystick aboveChassis = new Joystick(1);
 
   //chassis
   
@@ -38,4 +38,13 @@ public class OI {
     b_above.whenPressed(new PowerWallAction(action.EJECT));
     b_above.whenReleased(new PowerWallAction(action.STOP));
   }
+
+  public Joystick getChassis(){
+    return chassis;
+  }
+
+  public Joystick getAboveChassis(){
+    return aboveChassis;
+  }
+
 }
