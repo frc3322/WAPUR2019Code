@@ -33,10 +33,21 @@ public class PowerWall extends Subsystem{
         frontMotor2.follow(frontMotor1);
         backMotor2.follow(backMotor1);
 
-        frontMotor1.configPeakCurrentLimit(60, 10);
-        frontMotor2.configPeakCurrentLimit(60, 10);
-        backMotor1.configPeakCurrentLimit(60, 10);
-        backMotor2.configPeakCurrentLimit(60, 10);
+        frontMotor1.configPeakCurrentLimit(0, 10);
+        frontMotor2.configPeakCurrentLimit(0, 10);
+        backMotor1.configPeakCurrentLimit(0, 10);
+        backMotor2.configPeakCurrentLimit(0, 10);
+
+        frontMotor1.configContinuousCurrentLimit(60, 10);
+        frontMotor2.configContinuousCurrentLimit(60, 10);
+        backMotor1.configContinuousCurrentLimit(60, 10);
+        backMotor2.configContinuousCurrentLimit(60, 10);
+
+        frontMotor1.enableCurrentLimit(true);
+        frontMotor2.enableCurrentLimit(true);
+        backMotor1.enableCurrentLimit(true);
+        backMotor2.enableCurrentLimit(true);
+
     }
 
     public void inputValues(){
