@@ -35,16 +35,16 @@ public class PowerWall extends Subsystem{
         frontMotor2.follow(frontMotor1);
         backMotor2.follow(backMotor1);
 
-        WPI_TalonSRX[] motors = {frontMotor1, frontMotor2, backMotor1, backMotor2};
+        //WPI_TalonSRX[] motors = {frontMotor1, frontMotor2, backMotor1, backMotor2};
 
-        for(WPI_TalonSRX motor: motors){
+        /*for(WPI_TalonSRX motor: motors){
             
             motor.configPeakCurrentLimit(60, 10);
             motor.configPeakCurrentDuration(20, 10);
             motor.configContinuousCurrentLimit(40, 10);
             motor.enableCurrentLimit(true);
 
-        }
+        }*/
 
 
     }
