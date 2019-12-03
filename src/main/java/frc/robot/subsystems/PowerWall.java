@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
+import java.util.ArrayList;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class PowerWall extends Subsystem{
@@ -33,20 +35,17 @@ public class PowerWall extends Subsystem{
         frontMotor2.follow(frontMotor1);
         backMotor2.follow(backMotor1);
 
-        frontMotor1.configPeakCurrentLimit(0, 10);
-        frontMotor2.configPeakCurrentLimit(0, 10);
-        backMotor1.configPeakCurrentLimit(0, 10);
-        backMotor2.configPeakCurrentLimit(0, 10);
+        WPI_TalonSRX[] motors = {frontMotor1, frontMotor2, backMotor1, backMotor2};
 
-        frontMotor1.configContinuousCurrentLimit(60, 10);
-        frontMotor2.configContinuousCurrentLimit(60, 10);
-        backMotor1.configContinuousCurrentLimit(60, 10);
-        backMotor2.configContinuousCurrentLimit(60, 10);
+        for(WPI_TalonSRX motor: motors){
+            
+            motor.configPeakCurrentLimit(60, 10);
+            motor.configPeakCurrentDuration(20, 10);
+            motor.configContinuousCurrentLimit(40, 10);
+            motor.enableCurrentLimit(true);
 
-        frontMotor1.enableCurrentLimit(true);
-        frontMotor2.enableCurrentLimit(true);
-        backMotor1.enableCurrentLimit(true);
-        backMotor2.enableCurrentLimit(true);
+        }
+
 
     }
 
