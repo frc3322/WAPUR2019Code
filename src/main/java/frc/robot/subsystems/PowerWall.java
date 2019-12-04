@@ -14,24 +14,29 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-
-import java.util.ArrayList;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class PowerWall extends Subsystem{
 
-    WPI_TalonSRX frontMotor1 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_FRONT_MOTOR_1);
-    WPI_TalonSRX frontMotor2 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_FRONT_MOTOR_2);
-    WPI_TalonSRX backMotor1 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_BACK_MOTOR_1);
-    WPI_TalonSRX backMotor2 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_BACK_MOTOR_2);
+    WPI_TalonSRX frontMotor1;
+    WPI_TalonSRX frontMotor2;
+    WPI_TalonSRX backMotor1;
+    WPI_TalonSRX backMotor2; 
     
-    
-    DoubleSolenoid intakeExtender = new DoubleSolenoid(RobotMap.PCM.PCM_ID, RobotMap.PCM.INTAKE_EXTEND, RobotMap.PCM.INTAKE_RETRACT);
+    WPI_TalonSRX intakeMotor;
+    //DoubleSolenoid intakeExtender = new DoubleSolenoid(RobotMap.PCM.PCM_ID, RobotMap.PCM.INTAKE_EXTEND, RobotMap.PCM.INTAKE_RETRACT);
 
     double defaultSpeed = 1;
 
     public PowerWall() {
+        frontMotor1 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_FRONT_MOTOR_1);
+        frontMotor2 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_FRONT_MOTOR_2);
+        backMotor1 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_BACK_MOTOR_1);
+        backMotor2 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_BACK_MOTOR_2);
+
+        intakeMotor = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_INTAKE_MOTOR);
+ 
+
         frontMotor2.follow(frontMotor1);
         backMotor2.follow(backMotor1);
 
@@ -67,26 +72,6 @@ public class PowerWall extends Subsystem{
     public void reverse() {
         frontMotor1.set(-1);
         backMotor1.set(-1);
-    }
-
-    public void intakeExtend() {
-        intakeExtender.set(DoubleSolenoid.Value.kForward);
-    }
-
-    public void intakeRetract() {
-        intakeExtender.set(DoubleSolenoid.Value.kReverse);
-    }
-
-    public void toggleIntake() {
-        if(intakeExtended()) {
-            intakeRetract();
-        }else{
-            intakeExtend();
-        }
-    }
-
-    public boolean intakeExtended() {
-        return intakeExtender.get() == Value.kForward;
     }
 
     @Override

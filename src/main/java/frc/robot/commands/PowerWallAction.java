@@ -17,7 +17,6 @@ import static frc.robot.Robot.powerwall;
 public class PowerWallAction extends Command{
     
     public enum action {
-        INTAKE,
         SHOOT,
         EJECT,
         STOP;
@@ -26,11 +25,9 @@ public class PowerWallAction extends Command{
     action status;
 
     public PowerWallAction(action status) {
-        requires(powerwall);
         this.status = status;
 
         /*actions:
-            -intake ball
             -shoot ball
             -eject ball
             -stop intake
@@ -41,9 +38,6 @@ public class PowerWallAction extends Command{
     @Override
     protected void initialize() {
         switch(status) {
-            case INTAKE:
-                powerwall.toggleIntake();
-                break;
             case SHOOT:
                 powerwall.start();
                 break;
