@@ -59,6 +59,10 @@ public class PowerWall extends Subsystem{
         SmartDashboard.putNumber("PowerWall Back Speed", defaultSpeed);
     }
 
+    public void spinIntake(double speed){
+        intakeMotor.set(speed);
+    }
+
     public void start() {
         frontMotor1.set(SmartDashboard.getNumber("PowerWall Front Speed", defaultSpeed));
         backMotor1.set(SmartDashboard.getNumber("PowerWall Back Speed", defaultSpeed));

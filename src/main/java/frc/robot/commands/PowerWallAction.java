@@ -25,6 +25,8 @@ public class PowerWallAction extends Command{
     action status;
 
     public PowerWallAction(action status) {
+        
+        // requires(powerwall); //commented out as thor was to lazy to make another subsytem
         this.status = status;
 
         /*actions:
