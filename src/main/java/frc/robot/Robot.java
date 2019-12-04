@@ -27,12 +27,14 @@ import frc.robot.subsystems.PowerWall;
 import frc.robot.subsystems.Drivetrain;
 
 public class Robot extends TimedRobot {
-  public static PowerWall powerwall = new PowerWall();
-  public static Drivetrain drivetrain = new Drivetrain();
+  public static PowerWall powerwall;
+  public static Drivetrain drivetrain;
   public static OI oi;
 
   @Override
   public void robotInit() {
+    powerwall = new PowerWall();
+    drivetrain = new Drivetrain();
     oi = new OI();
     powerwall.inputValues();
   }
