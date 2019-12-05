@@ -19,21 +19,23 @@ import static frc.robot.Robot.oi;
 
 public class IntakeControl extends Command {
 
-    private final int INTAKE_AXIS, REVERSE_AXIS;
+    private final int TILT_AXIS, REVERSE_TILT_AXIS, SPIN_AXIS;
 
     public IntakeControl() {
 
         // requires(powerwall); //commented out as thor was to lazy to make another subsytem
 
-        INTAKE_AXIS = RobotMap.XBOX.TRIGGER_L_AXIS;
-        REVERSE_AXIS = RobotMap.XBOX.TRIGGER_R_AXIS;
+        TILT_AXIS = RobotMap.XBOX.TRIGGER_L_AXIS;
+        REVERSE_TILT_AXIS = RobotMap.XBOX.TRIGGER_R_AXIS;
+        SPIN_AXIS = RobotMap.XBOX.STICK_L_Y_AXIS;
 
     }
 
     @Override
     protected void execute() {
         
-        powerwall.spinIntake(oi.getAboveChassis().getRawAxis(INTAKE_AXIS) - oi.getAboveChassis().getRawAxis(REVERSE_AXIS));
+        powerwall.tiltIntake(oi.getAboveChassis().getRawAxis(TILT_AXIS) - oi.getAboveChassis().getRawAxis(REVERSE_TILT_AXIS));
+        powerwall.spinIntake(oi.getAboveChassis().getRawAxis(SPIN_AXIS));
     
     }
 
