@@ -23,6 +23,7 @@ public class RobotMap {
     public static final int POWERWALL_BACK_MOTOR_1 = 14;
     public static final int POWERWALL_BACK_MOTOR_2 = 15;
     public static final int POWERWALL_INTAKE_MOTOR = 0;
+    public static final int POWERWALL_TILT_MOTOR = 0;
   }
 
   public static class PCM {
