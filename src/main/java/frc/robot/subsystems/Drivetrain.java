@@ -31,10 +31,10 @@ public class Drivetrain extends Subsystem {
   
     private DifferentialDrive robotDrive;
 
-    private final int LEFT_BACK = 0,
-                      LEFT_FRONT = 1,
-                      RIGHT_BACK = 2,
-                      RIGHT_FRONT = 3;
+    private final int BACK_LEFT = 0,
+                      BACK_RIGHT = 1,
+                      FRONT_LEFT = 2,
+                      FRONT_RIGHT = 3;
 
     private AHRS navx;
 
@@ -48,27 +48,27 @@ public class Drivetrain extends Subsystem {
         
         navx = new AHRS(SPI.Port.kMXP);
 
-        motors[LEFT_BACK] = new CANSparkMax(RobotMap.CAN.LEFT_BACK_MOTOR, MotorType.kBrushless);
-        motors[LEFT_FRONT] = new CANSparkMax(RobotMap.CAN.LEFT_FRONT_MOTOR, MotorType.kBrushless);
-        motors[RIGHT_BACK] = new CANSparkMax(RobotMap.CAN.RIGHT_BACK_MOTOR, MotorType.kBrushless);
-        motors[RIGHT_FRONT] = new CANSparkMax(RobotMap.CAN.RIGHT_FRONT_MOTOR, MotorType.kBrushless);
+        motors[BACK_LEFT] = new CANSparkMax(RobotMap.CAN.BACK_LEFT_MOTOR, MotorType.kBrushless);
+        motors[BACK_RIGHT] = new CANSparkMax(RobotMap.CAN.BACK_RIGHT_MOTOR, MotorType.kBrushless);
+        motors[FRONT_LEFT] = new CANSparkMax(RobotMap.CAN.FRONT_LEFT_MOTOR, MotorType.kBrushless);
+        motors[FRONT_RIGHT] = new CANSparkMax(RobotMap.CAN.FRONT_RIGHT_MOTOR, MotorType.kBrushless);
 
-        encoders[LEFT_BACK] = motors[LEFT_BACK].getEncoder();
-        encoders[LEFT_FRONT] = motors[LEFT_FRONT].getEncoder();
-        encoders[RIGHT_BACK] = motors[RIGHT_BACK].getEncoder();
-        encoders[RIGHT_FRONT] = motors[RIGHT_FRONT].getEncoder();
+        encoders[BACK_LEFT] = motors[BACK_LEFT].getEncoder();
+        encoders[BACK_RIGHT] = motors[BACK_RIGHT].getEncoder();
+        encoders[FRONT_LEFT] = motors[FRONT_LEFT].getEncoder();
+        encoders[FRONT_RIGHT] = motors[FRONT_RIGHT].getEncoder();
 
-        robotDrive = new DifferentialDrive(motors[LEFT_FRONT], motors[RIGHT_FRONT]);
-        motors[LEFT_BACK].follow(motors[LEFT_FRONT]);
-        motors[RIGHT_BACK].follow(motors[RIGHT_FRONT]);
+        robotDrive = new DifferentialDrive(motors[BACK_RIGHT], motors[FRONT_RIGHT]);
+        motors[BACK_LEFT].follow(motors[BACK_RIGHT]);
+        motors[FRONT_LEFT].follow(motors[FRONT_RIGHT]);
 
-        motors[LEFT_FRONT].setOpenLoopRampRate(rampRate);
-        motors[RIGHT_FRONT].setOpenLoopRampRate(rampRate);
+        motors[FRONT_LEFT].setOpenLoopRampRate(rampRate);
+        motors[FRONT_RIGHT].setOpenLoopRampRate(rampRate);
 
-        motors[LEFT_FRONT].setSmartCurrentLimit(40);
-        motors[RIGHT_FRONT].setSmartCurrentLimit(40);
-        motors[LEFT_BACK].setSmartCurrentLimit(40);
-        motors[RIGHT_BACK].setSmartCurrentLimit(40);
+        motors[FRONT_LEFT].setSmartCurrentLimit(40);
+        motors[FRONT_RIGHT].setSmartCurrentLimit(40);
+        motors[BACK_LEFT].setSmartCurrentLimit(40);
+        motors[BACK_RIGHT].setSmartCurrentLimit(40);
     
     }
 

@@ -84,7 +84,6 @@ public class DriveControl extends Command {
 
         } else {
             drivetrain.tankDrive(driveLeft, driveRight);
-
         }
     }
         
