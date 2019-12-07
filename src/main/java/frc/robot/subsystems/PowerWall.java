@@ -26,10 +26,11 @@ public class PowerWall extends Subsystem{
     WPI_TalonSRX backMotor2; 
     
     WPI_TalonSRX intakeMotor;
-    WPI_TalonSRX intakeTilt;
+    WPI_TalonSRX intakeTilt1;
+    WPI_TalonSRX intakeTilt2;
     //DoubleSolenoid intakeExtender = new DoubleSolenoid(RobotMap.PCM.PCM_ID, RobotMap.PCM.INTAKE_EXTEND, RobotMap.PCM.INTAKE_RETRACT);
 
-    double defaultSpeed = 1;
+    double defaultSpeed = .2;
 
     public PowerWall() {
         frontMotor1 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_FRONT_MOTOR_1);
@@ -38,10 +39,13 @@ public class PowerWall extends Subsystem{
         backMotor2 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_BACK_MOTOR_2);
 
         intakeMotor = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_INTAKE_MOTOR);
-        intakeTilt = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_TILT_MOTOR);
+        intakeTilt1 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_TILT_MOTOR_1);
+        intakeTilt2 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_TILT_MOTOR_2);
+        
  
-
+        frontMotor2.setInverted(true);
         frontMotor2.follow(frontMotor1);
+        backMotor2.setInverted(true);
         backMotor2.follow(backMotor1);
 
         intakeMotor.configPeakCurrentLimit(60, 10);
@@ -65,7 +69,7 @@ public class PowerWall extends Subsystem{
 
     public void inputValues(){
         SmartDashboard.putNumber("PowerWall Front Speed", defaultSpeed);
-        SmartDashboard.putNumber("PowerWall Back Speed", defaultSpeed);
+        SmartDashboard.putNumber("PowerWall Back Speed", -defaultSpeed);
     }
 
     public void spinIntake(double speed){
@@ -73,12 +77,13 @@ public class PowerWall extends Subsystem{
     }
 
     public void tiltIntake(double speed){
-        intakeTilt.set(speed);
+        intakeTilt1.set(speed);
+        intakeTilt2.set(-speed);
     }
 
     public void start() {
         frontMotor1.set(SmartDashboard.getNumber("PowerWall Front Speed", defaultSpeed));
-        backMotor1.set(SmartDashboard.getNumber("PowerWall Back Speed", defaultSpeed));
+        backMotor1.set(SmartDashboard.getNumber("PowerWall Back Speed", -defaultSpeed));
     }
 
     public void stop() {
@@ -87,8 +92,8 @@ public class PowerWall extends Subsystem{
     }
 
     public void reverse() {
-        frontMotor1.set(-1);
-        backMotor1.set(-1);
+        frontMotor1.set(-.2);
+        backMotor1.set(.2);
     }
 
     @Override
