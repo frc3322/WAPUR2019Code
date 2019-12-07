@@ -33,13 +33,13 @@ public class OI {
 
     //above
     y_above.whenPressed(new PowerWallAction(action.SHOOT));
-    y_above.whenReleased(new PowerWallAction(action.STOP));
+    y_above.whenReleased(new PowerWallAction(action.STOP_POWERWALL));
 
     x_above.whenPressed(new PowerWallAction(action.EJECT));
-    x_above.whenReleased(new PowerWallAction(action.STOP));
+    x_above.whenReleased(new PowerWallAction(action.STOP_POWERWALL));
 
     a_above.whenPressed(new PowerWallAction(action.INTAKE));
-    a_above.whenReleased(new PowerWallAction(action.STOP));
+    a_above.whenReleased(new PowerWallAction(action.STOP_INTAKE));
   }
 
   public Joystick getChassis(){

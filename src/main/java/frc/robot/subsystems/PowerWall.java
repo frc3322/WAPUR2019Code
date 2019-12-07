@@ -43,7 +43,12 @@ public class PowerWall extends Subsystem{
         intakeTilt1 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_TILT_MOTOR_1);
         intakeTilt2 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_TILT_MOTOR_2);
 
-        defaultPowerWallSpeed = 0.9;
+        frontMotor1.configClosedloopRamp(0.2);
+        frontMotor2.configClosedloopRamp(0.2);
+        backMotor1.configClosedloopRamp(0.2);
+        backMotor2.configClosedloopRamp(0.2);
+
+        defaultPowerWallSpeed = 1;
         defaultIntakeSpeed = 0.2;
         
  
@@ -95,12 +100,14 @@ public class PowerWall extends Subsystem{
         backMotor1.set(SmartDashboard.getNumber("PowerWall Back Speed", -defaultPowerWallSpeed));
     }
 
-    public void stop() {
+    public void stopPowerWall() {
         frontMotor1.set(0);
         backMotor1.set(0);
-        intakeMotor.set(0);
     }
 
+    public void stopIntake(){
+        intakeMotor.set(0);
+    }
     public void reverse() {
         frontMotor1.set(-defaultPowerWallSpeed);
         backMotor1.set(defaultPowerWallSpeed);

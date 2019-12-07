@@ -21,7 +21,8 @@ public class PowerWallAction extends Command{
         INTAKE,
         SHOOT,
         EJECT,
-        STOP;
+        STOP_POWERWALL,
+        STOP_INTAKE;
     }
 
     action status;
@@ -51,8 +52,11 @@ public class PowerWallAction extends Command{
             case EJECT:
                 powerwall.reverse();
                 break;
-            case STOP:
-                powerwall.stop();
+            case STOP_POWERWALL:
+                powerwall.stopPowerWall();
+                break;
+            case STOP_INTAKE:
+                powerwall.stopIntake();
                 break;
         }
     }
