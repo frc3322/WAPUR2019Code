@@ -43,7 +43,7 @@ public class PowerWall extends Subsystem{
         intakeTilt1 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_TILT_MOTOR_1);
         intakeTilt2 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_TILT_MOTOR_2);
 
-        defaultPowerWallSpeed = .5;
+        defaultPowerWallSpeed = 0.9;
         defaultIntakeSpeed = 0.2;
         
  
