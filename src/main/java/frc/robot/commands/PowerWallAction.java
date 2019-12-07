@@ -11,12 +11,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import static frc.robot.Robot.powerwall;
 
 public class PowerWallAction extends Command{
     
     public enum action {
+        INTAKE,
         SHOOT,
         EJECT,
         STOP;
@@ -40,6 +42,9 @@ public class PowerWallAction extends Command{
     @Override
     protected void initialize() {
         switch(status) {
+            case INTAKE:
+                powerwall.spinIntake(SmartDashboard.getNumber("Intake Speed", powerwall.getDefaultIntakeSpeed()));
+                break;
             case SHOOT:
                 powerwall.start();
                 break;

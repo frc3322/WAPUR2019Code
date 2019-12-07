@@ -30,7 +30,8 @@ public class PowerWall extends Subsystem{
     WPI_TalonSRX intakeTilt2;
     //DoubleSolenoid intakeExtender = new DoubleSolenoid(RobotMap.PCM.PCM_ID, RobotMap.PCM.INTAKE_EXTEND, RobotMap.PCM.INTAKE_RETRACT);
 
-    double defaultSpeed = .2;
+    private double defaultPowerWallSpeed;
+    private double defaultIntakeSpeed;
 
     public PowerWall() {
         frontMotor1 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_FRONT_MOTOR_1);
@@ -41,6 +42,9 @@ public class PowerWall extends Subsystem{
         intakeMotor = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_INTAKE_MOTOR);
         intakeTilt1 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_TILT_MOTOR_1);
         intakeTilt2 = new WPI_TalonSRX(RobotMap.CAN.POWERWALL_TILT_MOTOR_2);
+
+        defaultPowerWallSpeed = .5;
+        defaultIntakeSpeed = 0.2;
         
  
         frontMotor2.setInverted(true);
@@ -67,9 +71,14 @@ public class PowerWall extends Subsystem{
 
     }
 
+    public double getDefaultIntakeSpeed(){
+        return defaultIntakeSpeed;
+    }
+
     public void inputValues(){
-        SmartDashboard.putNumber("PowerWall Front Speed", defaultSpeed);
-        SmartDashboard.putNumber("PowerWall Back Speed", -defaultSpeed);
+        SmartDashboard.putNumber("PowerWall Front Speed", defaultPowerWallSpeed);
+        SmartDashboard.putNumber("PowerWall Back Speed", -defaultPowerWallSpeed);
+        SmartDashboard.putNumber("Intake Speed", defaultIntakeSpeed);
     }
 
     public void spinIntake(double speed){
@@ -82,18 +91,19 @@ public class PowerWall extends Subsystem{
     }
 
     public void start() {
-        frontMotor1.set(SmartDashboard.getNumber("PowerWall Front Speed", defaultSpeed));
-        backMotor1.set(SmartDashboard.getNumber("PowerWall Back Speed", -defaultSpeed));
+        frontMotor1.set(SmartDashboard.getNumber("PowerWall Front Speed", defaultPowerWallSpeed));
+        backMotor1.set(SmartDashboard.getNumber("PowerWall Back Speed", -defaultPowerWallSpeed));
     }
 
     public void stop() {
         frontMotor1.set(0);
         backMotor1.set(0);
+        intakeMotor.set(0);
     }
 
     public void reverse() {
-        frontMotor1.set(-.2);
-        backMotor1.set(.2);
+        frontMotor1.set(-defaultPowerWallSpeed);
+        backMotor1.set(defaultPowerWallSpeed);
     }
 
     @Override

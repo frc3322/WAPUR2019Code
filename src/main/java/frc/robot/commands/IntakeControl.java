@@ -23,7 +23,7 @@ public class IntakeControl extends Command {
 
     public IntakeControl() {
 
-        requires(powerwall); //commented out as thor was to lazy to make another subsytem
+        requires(powerwall);
 
         TILT_AXIS = RobotMap.XBOX.TRIGGER_L_AXIS;
         REVERSE_TILT_AXIS = RobotMap.XBOX.TRIGGER_R_AXIS;
@@ -35,7 +35,7 @@ public class IntakeControl extends Command {
     protected void execute() {
         
         powerwall.tiltIntake(oi.getAboveChassis().getRawAxis(TILT_AXIS) - oi.getAboveChassis().getRawAxis(REVERSE_TILT_AXIS));
-        powerwall.spinIntake((oi.getAboveChassis().getRawAxis(SPIN_AXIS)) / 10);
+        //powerwall.spinIntake((oi.getAboveChassis().getRawAxis(SPIN_AXIS)) / 10);
     
     }
 

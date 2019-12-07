@@ -32,11 +32,14 @@ public class OI {
     //chassis
 
     //above
-    a_above.whenPressed(new PowerWallAction(action.SHOOT));
-    a_above.whenReleased(new PowerWallAction(action.STOP));
+    y_above.whenPressed(new PowerWallAction(action.SHOOT));
+    y_above.whenReleased(new PowerWallAction(action.STOP));
 
-    b_above.whenPressed(new PowerWallAction(action.EJECT));
-    b_above.whenReleased(new PowerWallAction(action.STOP));
+    x_above.whenPressed(new PowerWallAction(action.EJECT));
+    x_above.whenReleased(new PowerWallAction(action.STOP));
+
+    a_above.whenPressed(new PowerWallAction(action.INTAKE));
+    a_above.whenReleased(new PowerWallAction(action.STOP));
   }
 
   public Joystick getChassis(){
