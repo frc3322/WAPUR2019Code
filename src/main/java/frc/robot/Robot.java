@@ -24,18 +24,21 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.PowerWallAction;
 import frc.robot.subsystems.PowerWall;
+import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Drivetrain;
 
 public class Robot extends TimedRobot {
   public static PowerWall powerwall;
   public static Drivetrain drivetrain;
   public static OI oi;
+  public static Shooter shooter;
 
   @Override
   public void robotInit() {
     powerwall = new PowerWall();
     drivetrain = new Drivetrain();
     oi = new OI();
+    shooter = new Shooter();
     powerwall.inputValues();
   }
 
@@ -60,15 +63,17 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
-  }
+}
 
-  @Override
-  public void teleopInit() {
-  }
+@Override
+public void teleopInit() {
+}
 
-  @Override
-  public void teleopPeriodic() {
+@Override
+public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    shooter.publishRPM();
+
   }
 
   @Override

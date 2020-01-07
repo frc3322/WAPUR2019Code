@@ -13,8 +13,8 @@ package frc.robot;
 public class RobotMap {
   public static class CAN {
     //drivetrain
-    public static final int FRONT_LEFT_MOTOR = 37;
-    public static final int FRONT_RIGHT_MOTOR = 46;
+    public static final int FRONT_LEFT_MOTOR = 0;
+    public static final int FRONT_RIGHT_MOTOR = 1;
     public static final int BACK_RIGHT_MOTOR = 34;
     public static final int BACK_LEFT_MOTOR = 35;
     
@@ -25,6 +25,9 @@ public class RobotMap {
     public static final int POWERWALL_INTAKE_MOTOR = 11;
     public static final int POWERWALL_TILT_MOTOR_1 = 12;
     public static final int POWERWALL_TILT_MOTOR_2 = 10;
+
+    public static final int SHOOTER_1 = 46;
+    public static final int SHOOTER_2 = 37;
   }
 
   public static class PCM {
