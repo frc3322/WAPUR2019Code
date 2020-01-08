@@ -12,7 +12,6 @@ public class Shoot extends Command {
 
     @Override
     protected void initialize() {
-        super.initialize();
         shooter.enable();
     }
 
@@ -23,7 +22,7 @@ public class Shoot extends Command {
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
 }

@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.*;
-import frc.robot.commands.PowerWallAction.action;
 
 public class OI {
   private Joystick chassis = new Joystick(0);
