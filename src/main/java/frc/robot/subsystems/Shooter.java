@@ -38,9 +38,7 @@ public class Shooter extends PIDSubsystem {
         setAbsoluteTolerance(20);
         setInputRange(0, 5000);
         setOutputRange(0, 1);
-        getPIDController().setContinuous(false);
-        
-        
+        getPIDController().setContinuous(false);        
     }
 
     @Override

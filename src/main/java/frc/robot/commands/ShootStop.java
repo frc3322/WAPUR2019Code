@@ -13,7 +13,6 @@ public class ShootStop extends Command {
     @Override
     protected void initialize() {
         shooter.disable();
-        shooter.setSpeed(0);
     }
 
     @Override
