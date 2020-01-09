@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import static frc.robot.Robot.*;
 
@@ -17,7 +18,7 @@ public class Shoot extends Command {
 
     @Override
     protected void execute() {
-        shooter.setSetpoint(3000);
+        shooter.setSetpoint(SmartDashboard.getNumber("Set Shooter RPM", 3000));
     }
 
     @Override

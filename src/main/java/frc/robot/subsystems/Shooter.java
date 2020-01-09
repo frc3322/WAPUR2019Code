@@ -9,11 +9,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
 public class Shooter extends PIDSubsystem {
-
-    private static double P = 0.0011;
+    private static double P = 0.2;
     private static double I = 0;
-    private static double D = 4;
-    private static double F = 0.00017;
+    private static double D = 0.5;
+    private static double F = 0;
 
     private CANSparkMax[] motors = new CANSparkMax[2];
     private CANEncoder[] encoders = new CANEncoder[2];
