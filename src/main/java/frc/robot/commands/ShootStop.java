@@ -12,7 +12,8 @@ public class ShootStop extends Command {
 
     @Override
     protected void initialize() {
-        shooter.disable();
+        //shooter.stop();
+        shooter.setSetpoint(0);
     }
 
     @Override

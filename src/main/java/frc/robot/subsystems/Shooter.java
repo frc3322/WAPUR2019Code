@@ -1,17 +1,20 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANEncoder;
+import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
-public class Shooter extends PIDSubsystem {
+public class Shooter {
+
     private static double P = 0.2;
     private static double I = 0;
-    private static double D = 0.5;
+    private static double D = 0;
     private static double F = 0;
 
     private CANSparkMax[] motors = new CANSparkMax[2];
@@ -23,9 +26,9 @@ public class Shooter extends PIDSubsystem {
     private final int ENCODER_0 = 0,
                         ENCODER_1 = 1;
 
-    public Shooter() {
-        super("Shooter PID", P, I, D, F);
+    CANPIDController controller;
 
+    public Shooter() {
         motors[MOTOR_0] = new CANSparkMax(RobotMap.CAN.SHOOTER_1, MotorType.kBrushless);
         motors[MOTOR_1] = new CANSparkMax(RobotMap.CAN.SHOOTER_2, MotorType.kBrushless);
 
@@ -34,15 +37,23 @@ public class Shooter extends PIDSubsystem {
 
         motors[MOTOR_1].follow(motors[MOTOR_0]);
 
-        setAbsoluteTolerance(20);
-        setInputRange(0, 5000);
-        setOutputRange(0, 1);
-        getPIDController().setContinuous(false);        
+        for ( CANSparkMax motor : motors ) {
+            motor.setIdleMode(IdleMode.kCoast);
+        }
+
+        controller = motors[MOTOR_0].getPIDController();
+        updateConstants();
+
     }
 
-    @Override
+    /*
+    public void stop() {
+        controller.setReference(0, ControlType.kDutyCycle);
+    }
+    */
+    
     public void setSetpoint(double setpoint) {
-        super.setSetpoint(setpoint);
+        controller.setReference(setpoint, ControlType.kVelocity);
     }
 
     public double publishRPM() {
@@ -54,21 +65,18 @@ public class Shooter extends PIDSubsystem {
         motors[MOTOR_0].set(speed);
     }
 
-    @Override
-    protected double returnPIDInput() {
-        return encoders[ENCODER_0].getVelocity();
+    public void updateConstants() {
+        controller.setOutputRange(0, 1);
+        controller.setP(SmartDashboard.getNumber("P", 0));
+        controller.setI(SmartDashboard.getNumber("I", 0));
+        controller.setD(SmartDashboard.getNumber("D", 0));
+        controller.setFF(SmartDashboard.getNumber("F", 0));
     }
 
-    @Override
-    protected void usePIDOutput(double output) {
-        SmartDashboard.putNumber("PID Output", output);
-        motors[MOTOR_0].pidWrite(output);
+    public void putNumbers() {
+        SmartDashboard.putNumber("P", P);
+        SmartDashboard.putNumber("I", I);
+        SmartDashboard.putNumber("D", D);
+        SmartDashboard.putNumber("F", F);
     }
-
-    @Override
-    protected void initDefaultCommand() {
-
-    }
-
-
 }

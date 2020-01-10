@@ -13,7 +13,7 @@ public class Shoot extends Command {
 
     @Override
     protected void initialize() {
-        shooter.enable();
+
     }
 
     @Override

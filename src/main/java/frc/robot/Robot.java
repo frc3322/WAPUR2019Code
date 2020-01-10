@@ -33,6 +33,8 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     oi = new OI();
     shooter = new Shooter();
+
+    shooter.putNumbers();
   }
 
   @Override
@@ -68,6 +70,7 @@ public void teleopPeriodic() {
     Scheduler.getInstance().run();
     //shooter.setSpeed(SmartDashboard.getNumber("Shooter Speed", 1));
     shooter.publishRPM();
+    shooter.updateConstants();
 
   }
 
