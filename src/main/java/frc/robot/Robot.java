@@ -22,23 +22,26 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Shooter;
 
 public class Robot extends TimedRobot {
   public static OI oi;
   public static Shooter shooter;
-  
+  public static Limelight limelight;
 
   @Override
   public void robotInit() {
     oi = new OI();
     shooter = new Shooter();
+    limelight = new Limelight();
 
     shooter.putNumbers();
   }
 
   @Override
   public void robotPeriodic() {
+      SmartDashboard.putNumber("Limelight Distance", Limelight.getDistance());
   }
 
   @Override
