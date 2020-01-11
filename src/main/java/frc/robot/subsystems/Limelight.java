@@ -11,6 +11,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
@@ -111,6 +112,22 @@ public class Limelight extends Subsystem {
      */
     public static void setCameraMode(CameraMode mode) {
         getValue("camMode").setNumber(mode.ordinal());
+    }
+
+    public static void putNumbers(){
+        SmartDashboard.putNumber("Limelight Angle", 35);
+        SmartDashboard.putNumber("Limelight Height", 1/2);
+
+        SmartDashboard.putString("Limelight Lights On", "false");
+    }
+
+    public static double getDistance() {
+        double limelightAngle = SmartDashboard.getNumber("Limelight Angle", 35);
+        double targetAngle = getTy();
+        double limelightHeight = SmartDashboard.getNumber("Limelight Height", 1/2);
+        double targetHeight = (7 + (5/6));
+
+        return ((targetHeight-limelightHeight)/(Math.tan((limelightAngle + targetAngle) * Math.PI/180)));
     }
 
     /**

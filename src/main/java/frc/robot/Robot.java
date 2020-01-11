@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Limelight.LightMode;
 import frc.robot.subsystems.Limelight;
@@ -30,18 +31,25 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static Shooter shooter;
   public static Limelight limelight;
-  
 
   @Override
   public void robotInit() {
     oi = new OI();
     shooter = new Shooter();
     limelight = new Limelight();
-    Limelight.setLedMode(LightMode.eOff);
+    
+    shooter.putNumbers();
+    Limelight.putNumbers();
+
   }
 
   @Override
   public void robotPeriodic() {
+      if(SmartDashboard.getString("Limelight Lights On", "false").equals("true")){
+        Limelight.setLedMode(LightMode.eOn);
+      } else{
+        Limelight.setLedMode(LightMode.eOff);
+      }
   }
 
   @Override
@@ -64,8 +72,7 @@ public class Robot extends TimedRobot {
 }
 @Override
 public void teleopInit() {
-  SmartDashboard.putNumber("Shooter Speed", 0);
-  SmartDashboard.putNumber("Set Shooter RPM", 3000);
+  
 }
 
 @Override
@@ -73,6 +80,7 @@ public void teleopPeriodic() {
     Scheduler.getInstance().run();
     //shooter.setSpeed(SmartDashboard.getNumber("Shooter Speed", 1));
     shooter.publishRPM();
+    shooter.updateConstants();
 
   }
 
