@@ -113,6 +113,15 @@ public class Limelight extends Subsystem {
         getValue("camMode").setNumber(mode.ordinal());
     }
 
+    public static double getDistance() {
+        double limelightAngle = 24;
+        double targetAngle = getTy();
+        double limelightHeight = 1/6;
+        double targetHeight = 7 + (5/6);
+
+        return ((targetHeight-limelightHeight)/(Math.tan((limelightAngle + targetAngle) * Math.PI/180)));
+    }
+
     /**
      * Sets pipeline number (0-9 value).
      *
