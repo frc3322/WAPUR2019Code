@@ -23,16 +23,21 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Limelight.LightMode;
+import frc.robot.subsystems.Limelight;
 
 public class Robot extends TimedRobot {
   public static OI oi;
   public static Shooter shooter;
+  public static Limelight limelight;
   
 
   @Override
   public void robotInit() {
     oi = new OI();
     shooter = new Shooter();
+    limelight = new Limelight();
+    Limelight.setLedMode(LightMode.eOff);
   }
 
   @Override
