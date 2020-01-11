@@ -37,14 +37,19 @@ public class Robot extends TimedRobot {
     oi = new OI();
     shooter = new Shooter();
     limelight = new Limelight();
-    Limelight.setLedMode(LightMode.eOff);
-
+    
     shooter.putNumbers();
+    Limelight.putNumbers();
+
   }
 
   @Override
   public void robotPeriodic() {
-      SmartDashboard.putNumber("Limelight Distance", Limelight.getDistance());
+      if(SmartDashboard.getString("Limelight Lights On", "false").equals("true")){
+        Limelight.setLedMode(LightMode.eOn);
+      } else{
+        Limelight.setLedMode(LightMode.eOff);
+      }
   }
 
   @Override
@@ -67,8 +72,7 @@ public class Robot extends TimedRobot {
 }
 @Override
 public void teleopInit() {
-  SmartDashboard.putNumber("Shooter Speed", 0);
-  SmartDashboard.putNumber("Set Shooter RPM", 3000);
+  
 }
 
 @Override

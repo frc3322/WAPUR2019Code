@@ -78,5 +78,8 @@ public class Shooter {
         SmartDashboard.putNumber("I", I);
         SmartDashboard.putNumber("D", D);
         SmartDashboard.putNumber("F", F);
+
+        SmartDashboard.putNumber("Shooter Speed", 0);
+        SmartDashboard.putNumber("Set Shooter RPM", 3000);
     }
 }
